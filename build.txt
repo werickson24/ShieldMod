@@ -5,4 +5,5 @@ homepage = https://forums.terraria.org/index.php?threads/shield-mod.71818/
 hideCode = false
 hideResources = false
 includeSource = true
+buildIgnore = build.txt, .gitattributes, .gitignore, .md, LICENSE, .git/, .vs/, .idea/, bin/, obj/, Thumbs.db
 includePDB = true
