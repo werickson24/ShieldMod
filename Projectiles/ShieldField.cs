@@ -35,10 +35,11 @@ namespace ShieldMod.Projectiles
         }
         public override void AI()
         {
+            int[] blacklist = new int[] {/*projectiles to not kill here*/};
             //Projectile_Collision_Targeter
             for (int s = 0; s < 1000; s++)
             {
-                if (Main.projectile[s].active && Main.projectile[s].hostile)
+                if (Main.projectile[s].active && Main.projectile[s].hostile && !Array.Exists(blacklist, element => element == Main.projectile[s].type))
                 {
                     Projectile ProJ = Main.projectile[s];
                     if (Colliding(projectile.Hitbox, ProJ.Hitbox) == true)
