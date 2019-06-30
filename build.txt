@@ -1,0 +1,8 @@
+author = Wil
+version = 1.0.0.0
+displayName = Shield Mod
+homepage = https://forums.terraria.org/index.php?threads/shield-mod.71818/
+hideCode = false
+hideResources = false
+includeSource = true
+includePDB = true
