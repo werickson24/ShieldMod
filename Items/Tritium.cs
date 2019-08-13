@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 
 namespace ShieldMod.Items
 {
-    public class Deuterium : ModItem
+    public class Tritium : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("It's Shimmering]");
+            Tooltip.SetDefault("Is it going to explode?]");
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(8, 3));
         }
         public override void SetDefaults()
@@ -23,21 +23,17 @@ namespace ShieldMod.Items
             item.knockBack = 1.5f;
             item.value = Item.sellPrice(0, 2, 50, 0);
             item.rare = 6;
-            item.shoot = mod.ProjectileType("Generator");
-            item.ammo = item.type;
+            item.shoot = mod.ProjectileType("GeneratorEX");
+            item.ammo = mod.ItemType("Deuterium");
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater, 15);
-            recipe.AddTile(TileID.Bottles);
+            recipe.AddIngredient(mod.GetItem("Deuterium"));
+            recipe.AddIngredient(ItemID.Ectoplasm, 10);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
-        public override void OnCraft(Recipe recipe)
-        {
-            Player player = Main.LocalPlayer;
-            player.QuickSpawnItem(ItemID.Bottle, 15);
         }
     }
 }

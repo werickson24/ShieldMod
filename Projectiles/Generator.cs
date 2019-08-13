@@ -68,7 +68,6 @@ namespace ShieldMod.Projectiles
             }
             if (End)
             {
-
                 if (Charged)
                 {
                     Main.PlaySound(SoundID.Item42, player.Center);//pew

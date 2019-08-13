@@ -14,6 +14,7 @@ namespace ShieldMod.Projectiles
         }
         double angle = 0;
         double tangle = 0;
+        Projectile flag;
         public override void SetDefaults()
         {
             projectile.width = 350;
@@ -35,35 +36,44 @@ namespace ShieldMod.Projectiles
         }
         public override void AI()
         {
+            //int[] blacklist = new int[] {/*projectiles to not kill here*/};
             //Projectile_Collision_Targeter
             for (int s = 0; s < 1000; s++)
             {
-                if (Main.projectile[s].active && Main.projectile[s].hostile)
+                if (Main.projectile[s].active && Main.projectile[s].hostile)/* && !Array.Exists(blacklist, element => element == Main.projectile[s].type))*/
                 {
                     Projectile ProJ = Main.projectile[s];
                     if (Colliding(projectile.Hitbox, ProJ.Hitbox) == true)
                     {
-                        for (int num641 = 0; num641 < 100; num641++)
+                        if (ProJ == flag)
                         {
-                            int numdust = Dust.NewDust(new Vector2(ProJ.position.X, ProJ.position.Y), 6, 6, 272, 0f, 0f, 100, default(Color), 1f);
-                            Dust projdust = Main.dust[numdust];
-                            float num646 = projdust.velocity.X;
-                            float y3 = projdust.velocity.Y;
-                            if (num646 == 0f && y3 == 0f)
-                            {
-                                num646 = 1f;
-                            }
-                            float num647 = (float)Math.Sqrt(num646 * num646 + y3 * y3);
-                            num647 = 4f / num647;
-                            num646 *= num647;
-                            y3 *= num647;
-                            projdust.velocity *= 0.5f;
-                            projdust.velocity.X += num646;
-                            projdust.velocity.Y += y3;
-                            projdust.scale = 1.3f;
-                            projdust.noGravity = true;
+                            ProJ.Kill();
                         }
-                        ProJ.Kill();
+                        else
+                        {
+                            for (int num641 = 0; num641 < 80; num641++)
+                            {
+                                int numdust = Dust.NewDust(new Vector2(ProJ.position.X, ProJ.position.Y), 6, 6, 272, 0f, 0f, 100, default(Color), 1f);
+                                Dust projdust = Main.dust[numdust];
+                                float num646 = projdust.velocity.X;
+                                float y3 = projdust.velocity.Y;
+                                if (num646 == 0f && y3 == 0f)
+                                {
+                                    num646 = 1f;
+                                }
+                                float num647 = (float)Math.Sqrt(num646 * num646 + y3 * y3);
+                                num647 = 4f / num647;
+                                num646 *= num647;
+                                y3 *= num647;
+                                projdust.velocity *= 0.5f;
+                                projdust.velocity.X += num646;
+                                projdust.velocity.Y += y3;
+                                projdust.scale = 1.3f;
+                                projdust.noGravity = true;
+                            }
+                            ProJ.velocity = new Vector2(-ProJ.velocity.X, -ProJ.velocity.Y);
+                            flag = ProJ;
+                        }
                     }
                 }
             }
