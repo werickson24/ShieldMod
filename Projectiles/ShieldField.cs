@@ -14,7 +14,7 @@ namespace ShieldMod.Projectiles
         }
         double angle = 0;
         double tangle = 0;
-        Projectile flag;
+        List<Projectile> killlist = new List<Projectile>();
         public override void SetDefaults()
         {
             projectile.width = 350;
@@ -36,7 +36,7 @@ namespace ShieldMod.Projectiles
         }
         public override void AI()
         {
-            //int[] blacklist = new int[] {/*projectiles to not kill here*/};
+            //int[] blacklist = new int[]{,};
             //Projectile_Collision_Targeter
             for (int s = 0; s < 1000; s++)
             {
@@ -45,8 +45,9 @@ namespace ShieldMod.Projectiles
                     Projectile ProJ = Main.projectile[s];
                     if (Colliding(projectile.Hitbox, ProJ.Hitbox) == true)
                     {
-                        if (ProJ == flag)
+                        if (killlist.Contains(ProJ))
                         {
+                            killlist.Remove(ProJ);
                             ProJ.Kill();
                         }
                         else
@@ -72,7 +73,7 @@ namespace ShieldMod.Projectiles
                                 projdust.noGravity = true;
                             }
                             ProJ.velocity = new Vector2(-ProJ.velocity.X, -ProJ.velocity.Y);
-                            flag = ProJ;
+                            killlist.Add(ProJ);
                         }
                     }
                 }

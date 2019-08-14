@@ -38,7 +38,7 @@ namespace ShieldMod.Projectiles
         }
         public override void AI()
         {
-            //int[] blacklist = new int[10];
+            //int[] blacklist = new int[]{,};
             //Projectile_Collision_Targeter
             for (int s = 0; s < 1000; s++)
             {
