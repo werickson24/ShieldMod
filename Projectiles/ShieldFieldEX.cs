@@ -1,12 +1,14 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ShieldMod.Projectiles
 {
-    public class ShieldField : ModProjectile
+    public class ShieldFieldEX : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -54,7 +56,7 @@ namespace ShieldMod.Projectiles
                         {
                             for (int num641 = 0; num641 < 80; num641++)
                             {
-                                int numdust = Dust.NewDust(new Vector2(ProJ.position.X, ProJ.position.Y), 6, 6, 272, 0f, 0f, 100, default(Color), 1f);
+                                int numdust = Dust.NewDust(new Vector2(ProJ.position.X, ProJ.position.Y), 6, 6, 226, 0f, 0f, 100, default(Color), 1f);
                                 Dust projdust = Main.dust[numdust];
                                 float num646 = projdust.velocity.X;
                                 float y3 = projdust.velocity.Y;
@@ -75,6 +77,16 @@ namespace ShieldMod.Projectiles
                             ProJ.velocity = new Vector2(-ProJ.velocity.X, -ProJ.velocity.Y);
                             killlist.Add(ProJ);
                         }
+                    }
+                }
+            }
+            foreach (Player pal in Main.player)
+            {
+                if (pal.active)
+                {
+                    if ((Main.player[projectile.owner].team == pal.team || pal == Main.player[projectile.owner]) && Colliding(projectile.Hitbox, pal.Hitbox) == true)
+                    {
+                        pal.AddBuff(mod.BuffType("Protect"), 2, false);
                     }
                 }
             }
@@ -118,7 +130,7 @@ namespace ShieldMod.Projectiles
                     if ((projectile.timeLeft + 10) > Main.rand.Next(1, 1000))
                     {
                         Dust dust;
-                        dust = Dust.NewDustPerfect(dustSp, 272, new Vector2(0f, 0f), 30, new Color(255, 255, 255), 1.2f);
+                        dust = Dust.NewDustPerfect(dustSp, 226, new Vector2(0f, 0f), 30, new Color(255, 255, 255), 1.2f);
                         dust.rotation = 50;
                         dust.noGravity = (projectile.timeLeft + 10) > Main.rand.Next(1, 400);
                         dust.fadeIn = 1.15f;

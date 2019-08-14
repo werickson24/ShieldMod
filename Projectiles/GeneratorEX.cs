@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ShieldMod.Projectiles
 {
-    public class Generator : ModProjectile
+    public class GeneratorEX : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -79,7 +79,7 @@ namespace ShieldMod.Projectiles
                     distance = 1f / distance;
                     shootToX *= distance * 5;
                     shootToY *= distance * 5;
-                    Projectile.NewProjectile(center.X, center.Y, shootToX, shootToY, mod.ProjectileType("ShieldCondense"), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(center.X, center.Y, shootToX, shootToY, mod.ProjectileType("ShieldCondenseEX"), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
                     projectile.Kill();
                     projectile.netUpdate = true;//I guess this updates multiplayer or something?
                 }
@@ -131,7 +131,7 @@ namespace ShieldMod.Projectiles
                     num19 = 0.65f;
                 }
                 Vector2 vector11 = value6 + ((float)Main.rand.NextDouble() * 6.28318548f).ToRotationVector2() * (12f - dustIntensity * 2);
-                int num20 = Dust.NewDust(vector11 - Vector2.One * 8f, 16, 16, 272, projectile.velocity.X / 2f, projectile.velocity.Y / 2f, 0, default(Color), 1f);
+                int num20 = Dust.NewDust(vector11 - Vector2.One * 8f, 16, 16, 226, projectile.velocity.X / 2f, projectile.velocity.Y / 2f, 0, default(Color), 1f);
                 Main.dust[num20].velocity = Vector2.Normalize(value6 - vector11) * 1.5f * (10f - dustIntensity * 2f) / 10f;
                 Main.dust[num20].noGravity = true;
                 Main.dust[num20].scale = num19;
