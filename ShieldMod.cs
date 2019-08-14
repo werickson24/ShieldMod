@@ -7,6 +7,5 @@ namespace ShieldMod
         public ShieldMod()
         {
         }
-        public static bool Protect = false;
     }
 }
