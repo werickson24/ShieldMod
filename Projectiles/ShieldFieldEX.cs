@@ -130,7 +130,7 @@ namespace ShieldMod.Projectiles
                     if ((projectile.timeLeft + 10) > Main.rand.Next(1, 1000))
                     {
                         Dust dust;
-                        dust = Dust.NewDustPerfect(dustSp, 226, new Vector2(0f, 0f), 30, new Color(255, 255, 255), 1.2f);
+                        dust = Dust.NewDustPerfect(dustSp, 226, Vector2.Zero, 30, new Color(255, 255, 255), 1.2f);
                         dust.rotation = 50;
                         dust.noGravity = (projectile.timeLeft + 10) > Main.rand.Next(1, 400);
                         dust.fadeIn = 1.15f;

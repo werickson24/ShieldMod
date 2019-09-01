@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace ShieldMod.Buffs
 {
@@ -16,24 +13,26 @@ namespace ShieldMod.Buffs
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing
         }
-        double angle = 0;
-        double tangle = 0;
+        int timed = 0;
         public override void Update(Player player, ref int buffIndex)
         {
             player.immune = true;
             player.immuneAlpha = 0;
-            angle += 91.5;
-            tangle = angle * (Math.PI / 180);
-            double x = (Math.Cos(tangle) * 30) + +player.Center.X;
-            double y = (Math.Sin(tangle) * 30) + +player.Center.Y;
-            Vector2 dustSp = new Vector2((float)x, (float)y);
-            if (Math.Abs(dustSp.X) >= 0.12f)
+            if (timed++ == 55)
             {
-                Dust dust;
-                dust = Dust.NewDustPerfect(dustSp, 226, new Vector2(0f, 0f), 30, new Color(255, 255, 255), 1.2f);
-                dust.rotation = 50;
-                dust.noGravity = true;
-                dust.fadeIn = 1.15f;
+                timed = 0;
+                for (int loop = 0; loop < 30; loop++)
+                {
+                    float num1562 = (float)loop / 30f * 6.28318548f;
+                    Vector2 vector268 = player.Center + num1562.ToRotationVector2() * (20);
+                    Vector2 vector269 = (num1562 - 1f).ToRotationVector2();// * (1f);
+                    Dust dust82 = Dust.NewDustPerfect(vector268, mod.DustType("Ripple"), vector269, 0, Color.White, 1f);
+                    dust82.customData = player;
+                    dust82.scale = 0.9f;
+                    dust82.fadeIn = 1.15f;
+                    dust82.noGravity = true;
+                    dust82.noLight = true;
+                }
             }
         }
     }

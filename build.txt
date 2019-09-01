@@ -1,5 +1,5 @@
 author = Wil
-version = 1.1.0.0
+version = 1.2.0.0
 displayName = Shield Mod
 homepage = https://forums.terraria.org/index.php?threads/shield-mod.71818/
 hideCode = false
