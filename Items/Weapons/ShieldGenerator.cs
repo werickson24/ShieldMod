@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -30,26 +31,31 @@ namespace ShieldMod.Items.Weapons
             item.UseSound = SoundID.Item13;
             item.shoot = mod.ProjectileType("Generator");
             item.shootSpeed = 14f;
-            item.useAmmo = mod.ItemType("Deuterium");
-            item.value = Item.buyPrice(1, 50, 0, 0);
+            //item.useAmmo = mod.ItemType("Deuterium");
+            item.value = Item.sellPrice(1, 0, 0, 0);
         }
-
+        public override bool CanUseItem(Player player)
+        {
+            if (player.HasItem(mod.ItemType("Deuterium")))
+            {
+                player.ConsumeItem(mod.ItemType("Deuterium"));
+                item.shoot = mod.ProjectileType("GeneratorEX");
+                item.mana = 6;
+            }
+            else
+            {
+                item.shoot = mod.ProjectileType("Generator");
+                item.mana = 10;
+            }
+            return base.CanUseItem(player);
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.ChargedBlasterCannon);
-            recipe.AddIngredient(mod.ItemType("Deuterium"), 10);
-            recipe.AddIngredient(ItemID.SoulofMight, 20);
-            recipe.AddIngredient(ItemID.TitaniumBar, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ChargedBlasterCannon);
-            recipe.AddIngredient(mod.ItemType("Deuterium"), 10);
-            recipe.AddIngredient(ItemID.SoulofMight, 20);
-            recipe.AddIngredient(ItemID.AdamantiteBar, 10);
+            //recipe.AddIngredient(mod.ItemType("Deuterium"), 10);
+            recipe.AddIngredient(ItemID.SoulofMight, 10);
+            recipe.AddIngredient(ItemID.SpectreBar, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

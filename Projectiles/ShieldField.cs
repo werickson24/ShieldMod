@@ -27,7 +27,7 @@ namespace ShieldMod.Projectiles
             projectile.friendly = true;
             projectile.hostile = false;
             projectile.magic = true;
-            projectile.timeLeft = 10800;
+            projectile.timeLeft = 5400;
             projectile.extraUpdates = 2;
             projectile.penetrate = -1;
             projectile.usesLocalNPCImmunity = true;

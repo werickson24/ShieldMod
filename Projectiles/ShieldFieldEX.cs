@@ -21,8 +21,8 @@ namespace ShieldMod.Projectiles
         {
             projectile.width = 350;
             projectile.height = 350;
-            projectile.damage = 35;
-            projectile.knockBack = 60;
+            projectile.damage = 55;
+            projectile.knockBack = 70;
             projectile.aiStyle = 0;
             projectile.friendly = true;
             projectile.hostile = false;
