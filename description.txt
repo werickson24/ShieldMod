@@ -1,2 +1,2 @@
 Howdy! This Mod Contains Force Field Weapons, Have Fun!
-Built on Terraria v1.3.5.2 and tModLoader v0.11.5.0
+Built on Terraria v1.3.5.2 and tModLoader v0.11.6.1

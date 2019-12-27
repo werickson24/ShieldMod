@@ -3,7 +3,7 @@ Welcome to ShieldMod's Home Here on GitHub
 [ShieldMod on Terraria Community Forums](https://forums.terraria.org/index.php?threads/shield-mod.71818/ "Terraria Community Forums")
 
 ### About
-This mod was created for and using tModLoader v0.11.4.0 on Terraria v1.3.5.2
+This mod was created for and using tModLoader v0.11.6.1 on Terraria v1.3.5.2
 
 ### Installing
 If you haven't already, install [tModLoader](https://github.com/tModLoader/tModLoader/releases "tModLoader Releases")  
